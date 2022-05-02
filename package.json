@@ -1,0 +1,30 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "Nomad Coder Course",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wonseok-An/wetube.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "keywords": [
+    "NodeJS"
+  ],
+  "author": "Wonseok An<wonseok.an95@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wonseok-An/wetube/issues"
+  },
+  "homepage": "https://github.com/Wonseok-An/wetube#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "nodemon": "^2.0.16"
+  }
+}
