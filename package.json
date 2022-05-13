@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/Wonseok-An/wetube#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
     "mongoose": "^6.3.3",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
