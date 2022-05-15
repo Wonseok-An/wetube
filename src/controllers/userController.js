@@ -32,7 +32,7 @@ export const getLogin = (req, res) => {
 export const postLogin = async (req, res) => {
     const {username, password} = req.body;
     const pageTitle = "Login";
-    const user = await User.findOne({username});
+    const user = await User.findOne({username, socialOnly: false});
     if (!user) {
         return res.status(400).render("login", {
             pageTitle,
@@ -79,25 +79,42 @@ export const finishGithubLogin = async (req, res) => {
         const userData = await (await fetch(`${apiUrl}/user`,
                 {method: "GET", headers: {Authorization: `token ${access_token}`}})
         ).json();
-        console.log(userData);
         // 이메일 정보
         const emailData = await (await fetch(`${apiUrl}/user/emails`,
                 {method: "GET", headers: {Authorization: `token ${access_token}`}})
         ).json();
-        const email = emailData.find(email => email.primary===true && email.verified===true);
-        if (!email) {
+        const emailObj = emailData.find(email => email.primary===true && email.verified===true);
+        if (!emailObj) {
             return res.redirect("/login")
         }
-        console.log(email);
+        let user = await User.findOne({email: emailObj.email});
+        if (!user) {
+            user = await User.create({
+                name: userData.name,
+                avatarUrl: userData.avatar_url,
+                username: userData.login,
+                email: emailObj.email,
+                password: "",
+                socialOnly: true,
+                location: userData.location
+            });
+        }
+        req.session.loggedIn = true;
+        req.session.user = user;
+        return res.redirect("/");
     } else {
         return res.redirect("/login")
     }
-    return res.end()
 }
 
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/")
+};
+
+
+
 export const edit = (req, res) => res.send("Edit user");
-export const remove = (req, res) => res.send("Remove user");
-export const logout = (req, res) => res.send("Log out");
 export const see = (req, res) => res.send("See User");
 
 
