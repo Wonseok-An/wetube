@@ -1,0 +1,15 @@
+extends base
+
+block content
+    if errorMessage
+        p=errorMessage
+    form(method="POST")
+        input(type="text", name="name", value=loggedInUser.name, placeholder="Name", required)
+        input(type="email", name="email", value=loggedInUser.email, placeholder="Email", required)
+        input(type="text", name="username", value=loggedInUser.username, placeholder="Username", required)
+        input(type="text", name="location", value=loggedInUser.location, placeholder="Location", required)
+        input(type="submit", value="Update Profile")
+
+        if !loggedInUser.socialOnly
+            hr
+            a(href="change-password") Change Password &rarr;
