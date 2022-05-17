@@ -7,7 +7,8 @@
     "url": "git+https://github.com/Wonseok-An/wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "keywords": [
     "NodeJS"
@@ -34,6 +35,14 @@
     "@babel/core": "^7.17.10",
     "@babel/node": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
-    "nodemon": "^2.0.16"
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "nodemon": "^2.0.16",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
   }
 }
